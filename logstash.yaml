@@ -16,6 +16,13 @@ spec:
       containers:
       - name: logstash
         image: docker.elastic.co/logstash/logstash:6.3.0
+        resources:
+            limits:
+              memory: "512M"
+              cpu: 1000m
+            requests:
+              memory: "256M"
+              cpu: 100m
         ports:
         - containerPort: 5044
         volumeMounts:
