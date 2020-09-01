@@ -55,5 +55,7 @@ data:
     output {
         elasticsearch {
             hosts => [ "elasticsearch-logging:9200" ]
+            index => "ELK"
+            action => "index"
         }
     }
