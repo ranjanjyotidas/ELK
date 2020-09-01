@@ -59,7 +59,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: filebeat
-        image: docker.elastic.co/beats/filebeat:6.3.0
+        image: docker.elastic.co/beats/filebeat:7.6.0
         args: [
           "-c", "/etc/filebeat.yml",
           "-e",
@@ -77,10 +77,6 @@ spec:
         - name: config
           mountPath: /etc/filebeat.yml
           readOnly: true
-          subPath: filebeat.yml
-        - name: prospectors
-          mountPath: /usr/share/filebeat/prospectors.d
-          readOnly: true
         - name: data
           mountPath: /usr/share/filebeat/data
         - name: varlibdockercontainers
@@ -94,10 +90,6 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
-      - name: prospectors
-        configMap:
-          defaultMode: 0600
-          name: filebeat-prospectors
       - name: data
         emptyDir: {}
 
