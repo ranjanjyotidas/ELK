@@ -85,7 +85,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          defaultMode: 0600
+          defaultMode: 0777
           name: filebeat-config
       - name: varlibdockercontainers
         hostPath:

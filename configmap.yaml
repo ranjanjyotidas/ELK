@@ -11,14 +11,14 @@ metadata:
 data:
   filebeat.yml: |-
     filebeat.inputs:
-      - type: docker
-        containers.ids:
-        - "*"
-      - type: log
-        enabled: true
-        paths:
-          - /var/log/*.log
-
+      - module: apache
+        access:
+          enabled: true
+          var.paths: [/var/log/apache2/access.log*]
+        error:
+          enabled: true
+          var.paths: [/var/log/apache2/error.log*]
+          
     output.logstash:
       hosts: ['logstash-service:5044']
 ---
